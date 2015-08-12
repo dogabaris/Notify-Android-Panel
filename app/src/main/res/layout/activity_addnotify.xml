@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#62A744">
+
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_title"
+        android:hint="Title"
+        android:background="@drawable/koseust"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_announcement"
+        android:hint="Announcement"
+        android:inputType="textMultiLine"
+        android:background="@drawable/kosealt"
+        android:scrollbars="vertical"
+        android:layout_below="@+id/et_tag"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_tag"
+        android:hint="Tag"
+        android:layout_below="@+id/et_title"
+        android:background="@drawable/kose90"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Publish"
+        android:id="@+id/btn_publish"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/tv_date"
+        android:layout_toEndOf="@+id/btn_date" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        android:id="@+id/btn_date"
+        android:background="@drawable/button"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/btn_time" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="setDate"
+        android:text="Time"
+        android:id="@+id/btn_time"
+        android:layout_alignTop="@+id/btn_date"
+        android:background="@drawable/button"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/tv_date"
+        android:textColor="#ffffffff"
+        android:layout_above="@+id/btn_publish"
+        android:layout_toEndOf="@+id/btn_time" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/tv_time"
+        android:textColor="#ffffffff"
+        android:layout_above="@+id/btn_publish"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/tv_date" />
+
+</RelativeLayout>
