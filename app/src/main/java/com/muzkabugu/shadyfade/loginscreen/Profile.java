@@ -10,7 +10,7 @@ public class Profile {
     private String username;
     private String password;
     private String id;
-    private List<Roles> roles = new ArrayList<Roles>();
+    public List<Roles> roles = new ArrayList<Roles>();
 
     public List<Roles> getRoles() {
         return roles;

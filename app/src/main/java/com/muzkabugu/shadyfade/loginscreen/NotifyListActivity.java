@@ -8,6 +8,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
+import android.widget.Toast;
+import com.google.gson.Gson;
 
 /**
  * Created by shadyfade on 8/3/15.
@@ -25,6 +27,10 @@ public class NotifyListActivity extends ActionBarActivity {
         setContentView(R.layout.activity_notify);
 
         //ListView lv_notify = (ListView) findViewById(R.id.notifyList);
+
+        //Bundle extras = getIntent().getExtras();
+        //String roles = extras.getString("roles");
+        //Toast.makeText(NotifyListActivity.this, roles, Toast.LENGTH_SHORT).show();
     }
 
     @Override

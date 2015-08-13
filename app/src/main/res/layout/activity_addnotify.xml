@@ -30,8 +30,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/et_tag"
         android:hint="Tag"
-        android:layout_below="@+id/et_title"
         android:background="@drawable/kose90"
+        android:layout_below="@+id/sp_tags"
         android:layout_alignParentStart="true" />
 
     <Button
@@ -82,5 +82,13 @@
         android:layout_above="@+id/btn_publish"
         android:layout_alignParentStart="true"
         android:layout_toStartOf="@+id/tv_date" />
+
+    <Spinner
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sp_tags"
+        android:background="#FFFFFF"
+        android:layout_below="@+id/et_title"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

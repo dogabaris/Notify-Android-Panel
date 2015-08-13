@@ -9,10 +9,12 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Scroller;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -47,6 +49,7 @@ public class AddNotifyActivity extends Activity {
         final EditText et_title         = (EditText) findViewById(R.id.et_title);
         final EditText et_tag           = (EditText) findViewById(R.id.et_tag);
         final EditText et_announcement  = (EditText) findViewById(R.id.et_announcement);
+        final Spinner sp_tags           = (Spinner) findViewById(R.id.sp_tags);
 
         et_title.setMaxLines(1);
         et_tag.setMaxLines(1);
@@ -54,6 +57,8 @@ public class AddNotifyActivity extends Activity {
         et_announcement.setVerticalScrollBarEnabled(true);
         et_announcement.setMovementMethod(new ScrollingMovementMethod());
 
+        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, ActiveUser.roles);
+        //sp_tags.setAdapter(adapter);
 
         btn_datepicker.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,10 +75,10 @@ public class AddNotifyActivity extends Activity {
                     public void onDateSet(DatePicker view, int year, int monthOfYear,
                                           int dayOfMonth) {
 
-                        tv_date.setText( dayOfMonth + "/" + (monthOfYear + 1) + "/"+year);
+                        tv_date.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
 
                     }
-                },year,month,day);
+                }, year, month, day);
 
                 datePicker.setTitle("Set Date");
                 //datePicker.setButton(DatePickerDialog.BUTTON_POSITIVE, "Set", datePicker);
@@ -121,8 +126,8 @@ public class AddNotifyActivity extends Activity {
             final EditText title            = (EditText) findViewById(R.id.et_title);
             final EditText tag              = (EditText) findViewById(R.id.et_tag);
             final EditText announcement     = (EditText) findViewById(R.id.et_announcement);
-            final TextView date           = (TextView) findViewById(R.id.tv_date);
-            final TextView time           = (TextView) findViewById(R.id.tv_time);
+            final TextView date             = (TextView) findViewById(R.id.tv_date);
+            final TextView time             = (TextView) findViewById(R.id.tv_time);
 
             final Notify notify = new Notify();
             notify.setUsername(ActiveUser.user.getUsername());
@@ -131,13 +136,9 @@ public class AddNotifyActivity extends Activity {
             notify.setAnnouncement(announcement.getText().toString());
             notify.setDate(date.getText().toString() + " " + time.getText().toString());
 
-
-
-
             progressDialog.setMessage("Running...");
             progressDialog.setCancelable(false);
             progressDialog.show();
-
 
             Global.service.AddNotify(notify, new Callback<Notify>() {
                 @Override

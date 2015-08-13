@@ -22,6 +22,9 @@ import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import retrofit.Callback;
@@ -89,6 +92,8 @@ public class MainActivity extends Activity {
             user.setUsername(username.getText().toString());
             user.setPassword(password.getText().toString());
 
+            List<Roles> roles = new ArrayList<Roles>();
+
 
             progressDialog.setMessage("Loading...");
             progressDialog.setCancelable(false);
@@ -111,10 +116,12 @@ public class MainActivity extends Activity {
                         editor.putString("password", user.getPassword());
                         editor.commit();
 
-                        Toast.makeText(MainActivity.this, "Login Successful." + userResponse.getProfile().getRoles().toString(), Toast.LENGTH_SHORT).show();
+                        ActiveUser.roles = userResponse.getProfile().getRoles();
+
+                        Toast.makeText(MainActivity.this, "Login Successful." + ActiveUser.roles, Toast.LENGTH_SHORT).show();
 
                         Intent i = new Intent(MainActivity.this, NotifyListActivity.class);
-                        i.putExtra("username", user.getUsername());
+                        //i.putExtra("roles", Arrays.toString(userResponse.getProfile().getRoles().toArray()));
                         startActivity(i);
                         MainActivity.this.finish();
                     }
