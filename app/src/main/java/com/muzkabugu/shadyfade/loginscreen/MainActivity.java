@@ -95,10 +95,10 @@ public class MainActivity extends Activity {
             progressDialog.show();
 
 
-                Global.service.Login(user, new Callback<User>() {
+                Global.service.Login(user, new Callback<UserResponse>() {
 
                     @Override
-                    public void success(User user, Response response) {
+                    public void success(UserResponse userResponse, Response response) {
                         progressDialog.dismiss();
 
                         ActiveUser.user = user;
@@ -111,7 +111,7 @@ public class MainActivity extends Activity {
                         editor.putString("password", user.getPassword());
                         editor.commit();
 
-                        Toast.makeText(MainActivity.this, "Login Successful.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Login Successful." + userResponse.getProfile().getRoles().toString(), Toast.LENGTH_SHORT).show();
 
                         Intent i = new Intent(MainActivity.this, NotifyListActivity.class);
                         i.putExtra("username", user.getUsername());

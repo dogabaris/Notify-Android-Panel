@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="@string/Blogin"
         android:id="@+id/BLogin"
-        android:background="@drawable/kosealt"
+        android:background="@drawable/button"
         android:layout_alignWithParentIfMissing="false"
         android:layout_below="@+id/Et_Password"
         android:layout_centerHorizontal="true" />

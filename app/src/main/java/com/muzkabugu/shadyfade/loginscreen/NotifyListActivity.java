@@ -25,11 +25,6 @@ public class NotifyListActivity extends ActionBarActivity {
         setContentView(R.layout.activity_notify);
 
         //ListView lv_notify = (ListView) findViewById(R.id.notifyList);
-
-
-        Bundle gelen = getIntent().getExtras();
-        String username= gelen.getString("username");
-
     }
 
     @Override

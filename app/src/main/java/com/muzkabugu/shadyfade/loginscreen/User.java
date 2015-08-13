@@ -1,8 +1,10 @@
 package com.muzkabugu.shadyfade.loginscreen;
 
-import android.widget.EditText;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-import com.google.gson.Gson;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by shadyfade on 7/31/15.
@@ -26,6 +28,5 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
 
 }

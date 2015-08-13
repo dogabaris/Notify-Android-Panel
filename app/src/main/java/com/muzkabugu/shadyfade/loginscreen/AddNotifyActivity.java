@@ -149,7 +149,7 @@ public class AddNotifyActivity extends Activity {
                 @Override
                 public void failure(RetrofitError error) {
                     progressDialog.dismiss();
-                    Toast.makeText(AddNotifyActivity.this,date.getText().toString() + " " + time.getText().toString(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(AddNotifyActivity.this,error.getMessage(), Toast.LENGTH_LONG).show();
                     //Toast.makeText(AddNotifyActivity.this, error.getMessage().toString(), Toast.LENGTH_LONG).show();
                 }
             });

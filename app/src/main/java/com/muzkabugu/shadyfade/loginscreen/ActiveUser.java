@@ -5,4 +5,5 @@ package com.muzkabugu.shadyfade.loginscreen;
  */
 public class ActiveUser {
     public static User user;
+    //public static Roles roles;
 }
