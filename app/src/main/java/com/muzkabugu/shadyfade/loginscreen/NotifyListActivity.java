@@ -8,8 +8,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
-import android.widget.Toast;
-import com.google.gson.Gson;
 
 /**
  * Created by shadyfade on 8/3/15.

@@ -12,8 +12,8 @@ public class Profile {
     private String id;
     public List<Roles> roles = new ArrayList<Roles>();
 
-    public List<Roles> getRoles() {
-        return roles;
+    public ArrayList<Roles> getRoles() {
+        return (ArrayList<Roles>) roles;
     }
 
     public void setRoles(List<Roles> roles) {

@@ -9,6 +9,8 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -57,8 +59,24 @@ public class AddNotifyActivity extends Activity {
         et_announcement.setVerticalScrollBarEnabled(true);
         et_announcement.setMovementMethod(new ScrollingMovementMethod());
 
+        ArrayAdapter<Roles> rolesArrayAdapter = new ArrayAdapter<Roles>(this, android.R.layout.simple_spinner_dropdown_item, ActiveUser.roles);
+        sp_tags.setAdapter(rolesArrayAdapter);
+
         //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, ActiveUser.roles);
         //sp_tags.setAdapter(adapter);
+
+        sp_tags.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(AddNotifyActivity.this, view.toString(), Toast.LENGTH_LONG).show();
+            }
+
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                return;
+            }
+        });
+
+
+
 
         btn_datepicker.setOnClickListener(new View.OnClickListener() {
             @Override
