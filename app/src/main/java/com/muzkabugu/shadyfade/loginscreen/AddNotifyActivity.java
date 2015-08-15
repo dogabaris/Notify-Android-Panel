@@ -158,7 +158,7 @@ public class AddNotifyActivity extends Activity {
             progressDialog.setCancelable(false);
             progressDialog.show();
 
-            Global.service.AddNotify(notify, new Callback<Notify>() {
+            Global.getService().AddNotify(notify, new Callback<Notify>() {
                 @Override
                 public void success(Notify notify, Response response) {
                     progressDialog.dismiss();
@@ -168,7 +168,7 @@ public class AddNotifyActivity extends Activity {
                 @Override
                 public void failure(RetrofitError error) {
                     progressDialog.dismiss();
-                    Toast.makeText(AddNotifyActivity.this,error.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(AddNotifyActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
                     //Toast.makeText(AddNotifyActivity.this, error.getMessage().toString(), Toast.LENGTH_LONG).show();
                 }
             });

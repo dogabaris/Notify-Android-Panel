@@ -100,7 +100,7 @@ public class MainActivity extends Activity {
             progressDialog.show();
 
 
-                Global.service.Login(user, new Callback<UserResponse>() {
+                Global.getService().Login(user, new Callback<UserResponse>() {
 
                     @Override
                     public void success(UserResponse userResponse, Response response) {
@@ -141,11 +141,11 @@ public class MainActivity extends Activity {
                                     Toast.makeText(MainActivity.this, "Wrong Username or Password!", Toast.LENGTH_LONG).show();
                                 } catch (Exception ex) {
                                     Toast.makeText(MainActivity.this, "Unknown error!", Toast.LENGTH_LONG).show();
+                                }
                             }
                         }
-                        }
-                }
-            });
+                    }
+                });
         }
 
     };
