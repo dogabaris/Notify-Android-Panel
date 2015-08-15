@@ -25,4 +25,5 @@ public class Roles {
     public void setName(String name) {
         this.name = name;
     }
+
 }

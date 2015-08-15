@@ -10,18 +10,18 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Scroller;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -33,6 +33,9 @@ import retrofit.client.Response;
 public class AddNotifyActivity extends Activity {
 
     private ProgressDialog progressDialog;
+    private List<Roles> roles = ActiveUser.roles;
+    public  String[] StringRoles = new String[roles.size()];
+    public String SelectedRole;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,41 +44,40 @@ public class AddNotifyActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_addnotify);
 
+
         progressDialog = new ProgressDialog(this);
 
-        Button btn_datepicker           = (Button) findViewById(R.id.btn_date);
-        Button btn_timepicker           = (Button) findViewById(R.id.btn_time);
-        Button btn_publish              = (Button) findViewById(R.id.btn_publish);
-        final TextView tv_date          = (TextView) findViewById(R.id.tv_date);
-        final TextView tv_time          = (TextView) findViewById(R.id.tv_time);
-        final EditText et_title         = (EditText) findViewById(R.id.et_title);
-        final EditText et_tag           = (EditText) findViewById(R.id.et_tag);
-        final EditText et_announcement  = (EditText) findViewById(R.id.et_announcement);
-        final Spinner sp_tags           = (Spinner) findViewById(R.id.sp_tags);
+        Button btn_datepicker = (Button) findViewById(R.id.btn_date);
+        Button btn_timepicker = (Button) findViewById(R.id.btn_time);
+        Button btn_publish = (Button) findViewById(R.id.btn_publish);
+        final TextView tv_date = (TextView) findViewById(R.id.tv_date);
+        final TextView tv_time = (TextView) findViewById(R.id.tv_time);
+        final EditText et_title = (EditText) findViewById(R.id.et_title);
+        final EditText et_announcement = (EditText) findViewById(R.id.et_announcement);
+        final Spinner sp_tags = (Spinner) findViewById(R.id.sp_tags);
 
         et_title.setMaxLines(1);
-        et_tag.setMaxLines(1);
         et_announcement.setMaxLines(21);
         et_announcement.setVerticalScrollBarEnabled(true);
         et_announcement.setMovementMethod(new ScrollingMovementMethod());
 
-        ArrayAdapter<Roles> rolesArrayAdapter = new ArrayAdapter<Roles>(this, android.R.layout.simple_spinner_dropdown_item, ActiveUser.roles);
-        sp_tags.setAdapter(rolesArrayAdapter);
+        for (int i = 0; i < roles.size(); i++) {
+            StringRoles[i] = ActiveUser.roles.get(i).getName();
+        }
 
-        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, ActiveUser.roles);
-        //sp_tags.setAdapter(adapter);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, StringRoles);
+        sp_tags.setAdapter(adapter);
 
         sp_tags.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(AddNotifyActivity.this, view.toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(AddNotifyActivity.this,sp_tags.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
+                SelectedRole = sp_tags.getSelectedItem().toString();
             }
 
             public void onNothingSelected(AdapterView<?> adapterView) {
                 return;
             }
         });
-
-
 
 
         btn_datepicker.setOnClickListener(new View.OnClickListener() {
@@ -119,7 +121,7 @@ public class AddNotifyActivity extends Activity {
                 timePicker = new TimePickerDialog(AddNotifyActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int selectedHour, int selectedMinute) {
-                        tv_time.setText( String.format("%02d:%02d", selectedHour, selectedMinute));
+                        tv_time.setText(String.format("%02d:%02d", selectedHour, selectedMinute));
                     }
                 }, hour, minute, true);
 
@@ -137,12 +139,10 @@ public class AddNotifyActivity extends Activity {
 
     View.OnClickListener publish = new View.OnClickListener() {
 
-
         @Override
         public void onClick(View v) {
 
             final EditText title            = (EditText) findViewById(R.id.et_title);
-            final EditText tag              = (EditText) findViewById(R.id.et_tag);
             final EditText announcement     = (EditText) findViewById(R.id.et_announcement);
             final TextView date             = (TextView) findViewById(R.id.tv_date);
             final TextView time             = (TextView) findViewById(R.id.tv_time);
@@ -150,7 +150,7 @@ public class AddNotifyActivity extends Activity {
             final Notify notify = new Notify();
             notify.setUsername(ActiveUser.user.getUsername());
             notify.setTitle(title.getText().toString());
-            notify.setTag(tag.getText().toString());
+            notify.setTag(SelectedRole);
             notify.setAnnouncement(announcement.getText().toString());
             notify.setDate(date.getText().toString() + " " + time.getText().toString());
 

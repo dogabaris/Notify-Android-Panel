@@ -17,7 +17,7 @@ import retrofit.http.POST;
  */
 public interface Services {
 
-    @POST("/loginjson")
+    @POST("/login")
         void Login(@Body User user, Callback<UserResponse> cb);
 
     @POST("/create")

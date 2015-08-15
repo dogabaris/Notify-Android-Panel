@@ -118,7 +118,7 @@ public class MainActivity extends Activity {
 
                         ActiveUser.roles = userResponse.getProfile().getRoles();
 
-                        Toast.makeText(MainActivity.this, "Login Successful." + ActiveUser.roles, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Login Successful.", Toast.LENGTH_SHORT).show();
 
                         Intent i = new Intent(MainActivity.this, NotifyListActivity.class);
                         //i.putExtra("roles", Arrays.toString(userResponse.getProfile().getRoles().toArray()));
@@ -131,7 +131,7 @@ public class MainActivity extends Activity {
                         progressDialog.dismiss();
 
                         if (error.isNetworkError()) {
-                            Toast.makeText(MainActivity.this, "Check your internet connection!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this, "Internet error!", Toast.LENGTH_LONG).show();
                         } else {
                             if (error.getResponse() == null) {
                                 Toast.makeText(MainActivity.this, "Timed out!", Toast.LENGTH_LONG).show();

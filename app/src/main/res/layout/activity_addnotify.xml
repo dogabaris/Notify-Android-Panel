@@ -22,17 +22,8 @@
         android:inputType="textMultiLine"
         android:background="@drawable/kosealt"
         android:scrollbars="vertical"
-        android:layout_below="@+id/et_tag"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/et_tag"
-        android:hint="Tag"
-        android:background="@drawable/kose90"
-        android:layout_below="@+id/sp_tags"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/sp_tags" />
 
     <Button
         android:layout_width="wrap_content"
