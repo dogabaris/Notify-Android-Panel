@@ -7,7 +7,7 @@ public class Notify {
     private String username;
     private String title;
     private String tag;
-    private String announcement;
+    private String content;
     private String published_at;
 
     public String getUsername() {
@@ -34,12 +34,12 @@ public class Notify {
         this.tag = tag;
     }
 
-    public String getAnnouncement() {
-        return announcement;
+    public String getContent() {
+        return content;
     }
 
-    public void setAnnouncement(String announcement) {
-        this.announcement = announcement;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public String getDate() {

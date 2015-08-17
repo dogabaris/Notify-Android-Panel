@@ -8,6 +8,11 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
+import android.widget.ListView;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * Created by shadyfade on 8/3/15.
@@ -24,11 +29,7 @@ public class NotifyListActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notify);
 
-        //ListView lv_notify = (ListView) findViewById(R.id.notifyList);
 
-        //Bundle extras = getIntent().getExtras();
-        //String roles = extras.getString("roles");
-        //Toast.makeText(NotifyListActivity.this, roles, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -67,7 +68,21 @@ public class NotifyListActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_refresh) {
-            //Toast.makeText(getApplicationContext(),"Refresh.",Toast.LENGTH_LONG).show();
+
+            Global.getService().GetNotify(ActiveUser.user.getUsername(), new Callback<Posts>() {
+                @Override
+                public void success(Posts posts, Response response) {
+                    ListView lv_notify = (ListView) findViewById(R.id.lv_notify);
+                    CustomNotifyListAdapter adapter = new CustomNotifyListAdapter(NotifyListActivity.this,posts);
+                    lv_notify.setAdapter(adapter);
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+
+                }
+            });
+
             return true;
         }
         if (id == R.id.action_add) {

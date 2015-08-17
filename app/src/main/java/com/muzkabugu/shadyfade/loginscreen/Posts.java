@@ -9,6 +9,7 @@ public class Posts {
     private String id;
     private String title;
     private String content;
+    private String published_at;
     public List<PostUser> postUser;
     public List<Roles> roles;
 
@@ -50,5 +51,13 @@ public class Posts {
 
     public void setPostuser(List<PostUser> postuser) {
         this.postUser = postuser;
+    }
+
+    public String getPublished_at() {
+        return published_at;
+    }
+
+    public void setPublished_at(String published_at) {
+        this.published_at = published_at;
     }
 }

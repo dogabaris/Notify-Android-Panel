@@ -19,7 +19,6 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -151,7 +150,7 @@ public class AddNotifyActivity extends Activity {
             notify.setUsername(ActiveUser.user.getUsername());
             notify.setTitle(title.getText().toString());
             notify.setTag(SelectedRole);
-            notify.setAnnouncement(announcement.getText().toString());
+            notify.setContent(announcement.getText().toString());
             notify.setDate(date.getText().toString() + " " + time.getText().toString());
 
             progressDialog.setMessage("Running...");
@@ -169,7 +168,6 @@ public class AddNotifyActivity extends Activity {
                 public void failure(RetrofitError error) {
                     progressDialog.dismiss();
                     Toast.makeText(AddNotifyActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
-                    //Toast.makeText(AddNotifyActivity.this, error.getMessage().toString(), Toast.LENGTH_LONG).show();
                 }
             });
 
