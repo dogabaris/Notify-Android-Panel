@@ -10,8 +10,8 @@ public class ListPosts {
     private String title;
     private String content;
     private String published_at;
-    public List<PostUser> postUser;
-    public List<Roles> roles;
+    public PostUser user;
+    public Roles tag;
 
     public String getId() {
         return id;
@@ -45,19 +45,19 @@ public class ListPosts {
         this.published_at = published_at;
     }
 
-    public List<PostUser> getPostUser() {
-        return postUser;
+    public PostUser getUser() {
+        return user;
     }
 
-    public void setPostUser(List<PostUser> postUser) {
-        this.postUser = postUser;
+    public void setUser(PostUser user) {
+        this.user = user;
     }
 
-    public List<Roles> getRoles() {
-        return roles;
+    public Roles getTag() {
+        return tag;
     }
 
-    public void setRoles(List<Roles> roles) {
-        this.roles = roles;
+    public void setTag(Roles tag) {
+        this.tag = tag;
     }
 }

@@ -78,7 +78,7 @@ public class NotifyListActivity extends ActionBarActivity {
                 @Override
                 public void success(Posts posts, Response response) {
 
-                    Toast.makeText(NotifyListActivity.this, posts.getPosts().get(0).getId(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(NotifyListActivity.this, posts.getPosts().get(0).getTag().getName(), Toast.LENGTH_LONG).show();
                     //ListView lv_notify = (ListView) findViewById(R.id.lv_notify);
                     //CustomNotifyListAdapter adapter = new CustomNotifyListAdapter(NotifyListActivity.this,Posts);
                     //lv_notify.setAdapter(adapter);
