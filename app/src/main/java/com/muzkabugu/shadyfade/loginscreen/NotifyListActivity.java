@@ -9,6 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.List;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -17,7 +20,9 @@ import retrofit.client.Response;
 /**
  * Created by shadyfade on 8/3/15.
  */
+
 public class NotifyListActivity extends ActionBarActivity {
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
@@ -72,14 +77,17 @@ public class NotifyListActivity extends ActionBarActivity {
             Global.getService().GetNotify(ActiveUser.user.getUsername(), new Callback<Posts>() {
                 @Override
                 public void success(Posts posts, Response response) {
-                    ListView lv_notify = (ListView) findViewById(R.id.lv_notify);
-                    CustomNotifyListAdapter adapter = new CustomNotifyListAdapter(NotifyListActivity.this,posts);
-                    lv_notify.setAdapter(adapter);
+
+                    Toast.makeText(NotifyListActivity.this, posts.getPosts().get(0).getId(), Toast.LENGTH_LONG).show();
+                    //ListView lv_notify = (ListView) findViewById(R.id.lv_notify);
+                    //CustomNotifyListAdapter adapter = new CustomNotifyListAdapter(NotifyListActivity.this,Posts);
+                    //lv_notify.setAdapter(adapter);
                 }
+
 
                 @Override
                 public void failure(RetrofitError error) {
-
+                    Toast.makeText(NotifyListActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
                 }
             });
 

@@ -15,7 +15,7 @@ import java.util.List;
 public class CustomNotifyListAdapter extends ArrayAdapter {
     private List<Posts> PostsList;
 
-    public CustomNotifyListAdapter(Context context, Posts posts){
+    public CustomNotifyListAdapter(Context context, List<Posts> posts){
         super(context,R.layout.notifylist_row, (List) posts);
         PostsList = (List<Posts>) posts;
     }
@@ -31,11 +31,11 @@ public class CustomNotifyListAdapter extends ArrayAdapter {
         TextView user = (TextView) item.findViewById(R.id.tv_user);
         TextView notifydate = (TextView) item.findViewById(R.id.tv_notifydate);
 
-        title.setText(PostsList.get(position).getTitle());
-        tag.setText(PostsList.get(position).getRoles().get(0).getName());
-        content.setText(PostsList.get(position).getContent());
-        user.setText(PostsList.get(position).getPostuser().get(0).getUsername());
-        notifydate.setText(PostsList.get(position).getPublished_at());
+        //title.setText(PostsLists.get(position).getTitle());
+        //tag.setText(PostsList.get(position).getRoles().get(0).getName());
+        //content.setText(PostsList.get(position).getContent());
+        //user.setText(PostsList.get(position).getPostuser().get(0).getUsername());
+        //notifydate.setText(PostsList.get(position).getPublished_at());
 
         return item;
     }

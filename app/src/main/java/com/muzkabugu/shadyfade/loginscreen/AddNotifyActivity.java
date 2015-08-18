@@ -43,7 +43,6 @@ public class AddNotifyActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_addnotify);
 
-
         progressDialog = new ProgressDialog(this);
 
         Button btn_datepicker = (Button) findViewById(R.id.btn_date);
