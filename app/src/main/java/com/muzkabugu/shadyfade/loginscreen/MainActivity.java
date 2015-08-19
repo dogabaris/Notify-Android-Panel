@@ -121,7 +121,6 @@ public class MainActivity extends Activity {
                         Toast.makeText(MainActivity.this, "Login Successful.", Toast.LENGTH_SHORT).show();
 
                         Intent i = new Intent(MainActivity.this, NotifyListActivity.class);
-                        //i.putExtra("roles", Arrays.toString(userResponse.getProfile().getRoles().toArray()));
                         startActivity(i);
                         MainActivity.this.finish();
                     }

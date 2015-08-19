@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -22,6 +24,7 @@ import retrofit.client.Response;
  */
 
 public class NotifyListActivity extends ActionBarActivity {
+    public ListView lv_notify;
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -33,7 +36,6 @@ public class NotifyListActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notify);
-
 
     }
 
@@ -73,15 +75,40 @@ public class NotifyListActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_refresh) {
+            final AlertDialog.Builder changenotify = new AlertDialog.Builder(this);
 
             Global.getService().GetNotify(ActiveUser.user.getUsername(), new Callback<Posts>() {
                 @Override
-                public void success(Posts posts, Response response) {
+                public void success(final Posts posts, Response response) {
 
                     //Toast.makeText(NotifyListActivity.this, posts.getPosts().get(0).getTag().getName(), Toast.LENGTH_LONG).show();
-                    ListView lv_notify = (ListView) findViewById(R.id.lv_notify);
+                    lv_notify = (ListView) findViewById(R.id.lv_notify);
                     CustomNotifyListAdapter adapter = new CustomNotifyListAdapter(NotifyListActivity.this, posts.Posts);
                     lv_notify.setAdapter(adapter);
+
+                    lv_notify.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            changenotify.setTitle("Arrangement to " + posts.Posts.get(position).getTitle());
+
+                            changenotify.setPositiveButton("Apply",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int whichButton) {
+                                            NotifyListActivity.this.finish();
+                                        }
+                                    });
+
+                            changenotify.setNegativeButton("Cancel",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int whichButton) {
+                                            dialog.cancel();
+                                        }
+                                    });
+
+                            changenotify.show();
+                        }
+                    });
+                    Toast.makeText(NotifyListActivity.this, "Refreshed", Toast.LENGTH_SHORT).show();
                 }
 
 

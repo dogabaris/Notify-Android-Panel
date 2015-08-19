@@ -39,4 +39,13 @@ public class CustomNotifyListAdapter extends ArrayAdapter {
 
         return item;
     }
+
+    /*@Override
+    public void onClick(View v) {
+        PostsList entry = (PostsList) v.getTag();
+        listPhonebook.remove(entry);
+        // listPhonebook.remove(view.getId());
+        notifyDataSetChanged();
+
+    }*/
 }

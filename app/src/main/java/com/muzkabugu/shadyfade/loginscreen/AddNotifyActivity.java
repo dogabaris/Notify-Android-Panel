@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
@@ -68,7 +69,7 @@ public class AddNotifyActivity extends Activity {
 
         sp_tags.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(AddNotifyActivity.this,sp_tags.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(AddNotifyActivity.this,sp_tags.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
                 SelectedRole = sp_tags.getSelectedItem().toString();
             }
 
@@ -161,6 +162,8 @@ public class AddNotifyActivity extends Activity {
                 public void success(Notify notify, Response response) {
                     progressDialog.dismiss();
                     Toast.makeText(AddNotifyActivity.this, "Success!", Toast.LENGTH_LONG).show();
+                    Intent i = new Intent(AddNotifyActivity.this, NotifyListActivity.class);
+                    startActivity(i);
                 }
 
                 @Override
