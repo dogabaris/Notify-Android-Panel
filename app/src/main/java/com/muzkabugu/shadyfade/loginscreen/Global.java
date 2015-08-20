@@ -26,7 +26,7 @@ public class Global {
             OkClient serviceClient = new OkClient(client);
 
             RestAdapter restAdapter = new RestAdapter.Builder()
-                    .setEndpoint("http://128.199.63.31")
+                    .setEndpoint("http://178.62.207.239")
                     .setClient(serviceClient)
                     .build();
             service = restAdapter.create(Services.class);
