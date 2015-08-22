@@ -88,7 +88,7 @@ public class NotifyListActivity extends ActionBarActivity {
 
                     final CustomNotifyListAdapter adapter = new CustomNotifyListAdapter(NotifyListActivity.this, posts.Posts);
                     lv_notify.setAdapter(adapter);
-
+                    lv_notify.setEnabled(true);
 
                     final LayoutInflater inflater = (LayoutInflater)NotifyListActivity.this.getSystemService(LAYOUT_INFLATER_SERVICE);
                     final AlertDialog.Builder changenotify = new AlertDialog.Builder(NotifyListActivity.this);
@@ -112,10 +112,12 @@ public class NotifyListActivity extends ActionBarActivity {
                             et_content.setText(posts.Posts.get(position).getContent());
                             et_date.setText(posts.Posts.get(position).getPublished_at());
 
-                            /*changenotify.setPositiveButton("Update", new DialogInterface.OnClickListener() {
+                            changenotify.setPositiveButton("Update", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     dialog.dismiss();
+                                    lv_notify.setEnabled(false);
+                                    findViewById(R.id.action_refresh).performClick();
                                 }
                             });
 
@@ -123,6 +125,8 @@ public class NotifyListActivity extends ActionBarActivity {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     dialog.dismiss();
+                                    lv_notify.setEnabled(false);
+                                    findViewById(R.id.action_refresh).performClick();
                                 }
                             });
 
@@ -130,8 +134,10 @@ public class NotifyListActivity extends ActionBarActivity {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     dialog.dismiss();
+                                    lv_notify.setEnabled(false);
+                                    findViewById(R.id.action_refresh).performClick();
                                 }
-                            });*/
+                            });
 
                             changenotify.show();
                         }
