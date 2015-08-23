@@ -1,7 +1,6 @@
 package com.muzkabugu.shadyfade.loginscreen;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,8 +15,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.List;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -89,33 +86,59 @@ public class NotifyListActivity extends ActionBarActivity {
                     final CustomNotifyListAdapter adapter = new CustomNotifyListAdapter(NotifyListActivity.this, posts.Posts);
                     lv_notify.setAdapter(adapter);
                     lv_notify.setEnabled(true);
+                    lv_notify.setAlpha(1);
 
                     final LayoutInflater inflater = (LayoutInflater)NotifyListActivity.this.getSystemService(LAYOUT_INFLATER_SERVICE);
                     final AlertDialog.Builder changenotify = new AlertDialog.Builder(NotifyListActivity.this);
                     final View arrangementDialogView = inflater.inflate(R.layout.dialogbox_arrangement, null);
                     changenotify.setView(arrangementDialogView);
+                    changenotify.setCancelable(false);
 
                     lv_notify.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                         @Override
-                        public void onItemClick(final AdapterView<?> parent, final View view, int position, long id) {
+                        public void onItemClick(final AdapterView<?> parent, final View view, final int position, long id) {
 
                             changenotify.setTitle("Arrangement for " + posts.Posts.get(position).getTitle());
 
-                            TextView et_title = (TextView) arrangementDialogView.findViewById(R.id.change_title);
-                            TextView et_tag = (TextView) arrangementDialogView.findViewById(R.id.change_tag);
-                            TextView et_content = (TextView) arrangementDialogView.findViewById(R.id.change_content);
-                            TextView et_date = (TextView) arrangementDialogView.findViewById(R.id.change_date);
+                            final EditText et_title = (EditText) arrangementDialogView.findViewById(R.id.change_title);
+                            final TextView et_tag = (TextView) arrangementDialogView.findViewById(R.id.change_tag);
+                            final EditText et_content = (EditText) arrangementDialogView.findViewById(R.id.change_content);
+                            final EditText et_date = (EditText) arrangementDialogView.findViewById(R.id.change_date);
 
                             et_title.setText(posts.Posts.get(position).getTitle());
                             et_tag.setText(posts.Posts.get(position).getTag().getName());
                             et_content.setText(posts.Posts.get(position).getContent());
                             et_date.setText(posts.Posts.get(position).getPublished_at());
 
+                            //Editable title = et_title.getText();
+
+
                             changenotify.setPositiveButton("Update", new DialogInterface.OnClickListener() {
+
+
+                                Notify arrange_notify = new Notify(posts.Posts.get(position).getUser().getUsername(),et_tag.getText().toString(),et_title.getText().toString(),et_content.getText().toString(),et_date.getText().toString());
+
+
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    Global.getService().UpdateNotify(posts.Posts.get(position).getId(),arrange_notify, new Callback<ArrangementResponse>() {
+                                        @Override
+                                        public void success(ArrangementResponse arrangementResponse, Response response) {
+                                            Toast.makeText(NotifyListActivity.this, "Updated", Toast.LENGTH_SHORT).show();
+                                        }
+
+                                        @Override
+                                        public void failure(RetrofitError error) {
+                                            Toast.makeText(NotifyListActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+
+
+
                                     dialog.dismiss();
+
+                                    lv_notify.setAlpha(0);
                                     lv_notify.setEnabled(false);
                                     findViewById(R.id.action_refresh).performClick();
                                 }
@@ -124,7 +147,21 @@ public class NotifyListActivity extends ActionBarActivity {
                             changenotify.setNeutralButton("Delete", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    Global.getService().DeleteNotify(posts.Posts.get(position).getId(), new Callback<ArrangementResponse>() {
+                                        @Override
+                                        public void success(ArrangementResponse arrangementResponse, Response response) {
+                                            Toast.makeText(NotifyListActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
+                                        }
+
+                                        @Override
+                                        public void failure(RetrofitError error) {
+                                            Toast.makeText(NotifyListActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+
                                     dialog.dismiss();
+
+                                    lv_notify.setAlpha(0);
                                     lv_notify.setEnabled(false);
                                     findViewById(R.id.action_refresh).performClick();
                                 }
@@ -134,6 +171,7 @@ public class NotifyListActivity extends ActionBarActivity {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     dialog.dismiss();
+                                    lv_notify.setAlpha(0);
                                     lv_notify.setEnabled(false);
                                     findViewById(R.id.action_refresh).performClick();
                                 }

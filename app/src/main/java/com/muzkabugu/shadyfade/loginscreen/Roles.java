@@ -1,8 +1,5 @@
 package com.muzkabugu.shadyfade.loginscreen;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 /**
  * Created by shadyfade on 8/12/15.
  */

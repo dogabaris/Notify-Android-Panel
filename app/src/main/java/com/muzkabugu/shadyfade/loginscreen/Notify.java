@@ -10,6 +10,17 @@ public class Notify {
     private String content;
     private String published_at;
 
+    public Notify(){}
+
+    public Notify(String username, String tag, String title, String content,String published_at) {
+        this.username = username;
+        this.tag = tag;
+        this.title = title;
+        this.content = content;
+        this.published_at = published_at;
+    }
+
+
     public String getUsername() {
         return username;
     }

@@ -1,11 +1,8 @@
 package com.muzkabugu.shadyfade.loginscreen;
 
 import com.squareup.okhttp.OkHttpClient;
-
-
 import java.net.CookieManager;
 import java.net.CookiePolicy;
-
 import retrofit.RestAdapter;
 import retrofit.client.OkClient;
 

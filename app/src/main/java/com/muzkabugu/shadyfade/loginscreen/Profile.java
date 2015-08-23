@@ -1,6 +1,5 @@
 package com.muzkabugu.shadyfade.loginscreen;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

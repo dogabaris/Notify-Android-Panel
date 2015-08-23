@@ -5,7 +5,7 @@
     android:weightSum="1"
     android:id="@+id/change_list">
 
-    <TextView
+    <EditText
         android:id="@+id/change_title"
         android:textSize="20dp"
         android:text="title"
@@ -31,7 +31,7 @@
         android:layout_marginBottom="16dp"
         android:fontFamily="sans-serif" />
 
-    <TextView
+    <EditText
         android:id="@+id/change_content"
         android:textSize="20dp"
         android:text="content"
@@ -45,7 +45,7 @@
         android:minLines = "1"
         android:maxLines = "13"/>
 
-    <TextView
+    <EditText
         android:id="@+id/change_date"
         android:textSize="20dp"
         android:text="date"
