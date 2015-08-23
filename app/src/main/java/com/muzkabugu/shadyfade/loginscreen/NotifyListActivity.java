@@ -117,11 +117,20 @@ public class NotifyListActivity extends ActionBarActivity {
                             changenotify.setPositiveButton("Update", new DialogInterface.OnClickListener() {
 
 
-                                Notify arrange_notify = new Notify(posts.Posts.get(position).getUser().getUsername(),et_tag.getText().toString(),et_title.getText().toString(),et_content.getText().toString(),et_date.getText().toString());
+                                //Notify arrange_notify = new Notify(posts.Posts.get(position).getUser().getUsername(),et_tag.getText().toString(),et_title.getText().toString()
+                                 //                                   ,et_content.getText().toString(),et_date.getText().toString());
 
 
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    String title=et_title.getText().toString();
+                                    String tag=et_tag.getText().toString();
+                                    String content=et_content.getText().toString();
+                                    String date=et_date.getText().toString();
+
+                                    Notify arrange_notify = new Notify(posts.Posts.get(position).getUser().getUsername(),tag,title
+                                            ,content,date);
+
                                     Global.getService().UpdateNotify(posts.Posts.get(position).getId(),arrange_notify, new Callback<ArrangementResponse>() {
                                         @Override
                                         public void success(ArrangementResponse arrangementResponse, Response response) {
