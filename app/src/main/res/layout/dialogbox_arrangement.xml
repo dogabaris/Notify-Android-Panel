@@ -7,9 +7,9 @@
 
     <EditText
         android:id="@+id/change_title"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:text="title"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginLeft="4dp"
@@ -19,7 +19,7 @@
 
     <TextView
         android:id="@+id/change_tag"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:text="tag"
         android:clickable="false"
         android:editable="false"
@@ -34,7 +34,7 @@
 
     <EditText
         android:id="@+id/change_content"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:text="content"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
@@ -49,9 +49,9 @@
 
     <EditText
         android:id="@+id/change_date"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:text="date"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:layout_marginLeft="4dp"

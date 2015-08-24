@@ -52,11 +52,8 @@ public class MainActivity extends Activity {
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         editor = preferences.edit();
 
-        String previoususername = preferences.getString("username", "");
-        String previouspassword = preferences.getString("password", "");
-
-        loginUsername.setText(previoususername);
-        loginPassword.setText(previouspassword);
+        loginUsername.setText(username);
+        loginPassword.setText(password);
 
         loginButton.setOnClickListener(login);
     }
@@ -74,7 +71,7 @@ public class MainActivity extends Activity {
             final EditText password = (EditText) findViewById(R.id.Et_Password);
 
             if(!InputControl(username.getText().toString()) && !InputControl(password.getText().toString())){
-                Toast.makeText(MainActivity.this,"Username and password cannot be less than 6 characters and contain special characters!",Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this,"Username and password cannot be less than 3 characters and contain special characters!",Toast.LENGTH_LONG).show();
                 return;
             }
 
@@ -100,11 +97,7 @@ public class MainActivity extends Activity {
                         editor.putString("username", user.getUsername());
                         editor.putString("password", user.getPassword());
                         editor.apply();
-
-                        ActiveUser.user = user;
-                        editor.putString("username", user.getUsername());
-                        editor.putString("password", user.getPassword());
-                        editor.commit();
+                        //editor.commit();
 
                         ActiveUser.roles = userResponse.getProfile().getRoles();
 

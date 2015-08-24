@@ -146,6 +146,10 @@ public class AddNotifyActivity extends Activity {
             final TextView date             = (TextView) findViewById(R.id.tv_date);
             final TextView time             = (TextView) findViewById(R.id.tv_time);
 
+            if(title.getText().toString().matches("") || announcement.getText().toString().matches("") || date.getText().toString().matches("") || time.getText().toString().matches(""))
+                Toast.makeText(AddNotifyActivity.this,"Fields cannot be blank!",Toast.LENGTH_LONG).show();
+            else{
+
             final Notify notify = new Notify();
             notify.setUsername(ActiveUser.user.getUsername());
             notify.setTitle(title.getText().toString());
@@ -172,7 +176,7 @@ public class AddNotifyActivity extends Activity {
                     Toast.makeText(AddNotifyActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
                 }
             });
-
+            }
         }
     };
 

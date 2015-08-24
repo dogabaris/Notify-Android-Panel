@@ -16,6 +16,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -28,15 +33,10 @@ public class NotifyListActivity extends ActionBarActivity {
     public ListView lv_notify;
 
     @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notify);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
     }
 
@@ -84,11 +84,23 @@ public class NotifyListActivity extends ActionBarActivity {
                 public void success(final Posts posts, Response response) {
 
                     final CustomNotifyListAdapter adapter = new CustomNotifyListAdapter(NotifyListActivity.this, posts.Posts);
+
+                    /*Comparator<ListPosts> comperator = new Comparator<ListPosts>() {
+                        @Override
+                        public int compare(ListPosts object1, ListPosts object2) {
+                            return object1.getPublished_at().compareToIgnoreCase(
+                                    object2.getPublished_at());
+                        }
+
+                    //Collections.sort(List posts, comperator);
+                    };*/
+
                     lv_notify.setAdapter(adapter);
                     lv_notify.setEnabled(true);
                     lv_notify.setAlpha(1);
 
-                    final LayoutInflater inflater = (LayoutInflater)NotifyListActivity.this.getSystemService(LAYOUT_INFLATER_SERVICE);
+
+                    final LayoutInflater inflater = (LayoutInflater) NotifyListActivity.this.getSystemService(LAYOUT_INFLATER_SERVICE);
                     final AlertDialog.Builder changenotify = new AlertDialog.Builder(NotifyListActivity.this);
                     final View arrangementDialogView = inflater.inflate(R.layout.dialogbox_arrangement, null);
                     changenotify.setView(arrangementDialogView);
@@ -111,51 +123,59 @@ public class NotifyListActivity extends ActionBarActivity {
                             et_content.setText(posts.Posts.get(position).getContent());
                             et_date.setText(posts.Posts.get(position).getPublished_at());
 
-                            //Editable title = et_title.getText();
-
 
                             changenotify.setPositiveButton("Update", new DialogInterface.OnClickListener() {
 
 
                                 //Notify arrange_notify = new Notify(posts.Posts.get(position).getUser().getUsername(),et_tag.getText().toString(),et_title.getText().toString()
-                                 //                                   ,et_content.getText().toString(),et_date.getText().toString());
+                                //                                   ,et_content.getText().toString(),et_date.getText().toString());
 
 
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    String title=et_title.getText().toString();
-                                    String tag=et_tag.getText().toString();
-                                    String content=et_content.getText().toString();
-                                    String date=et_date.getText().toString();
+                                    String title = et_title.getText().toString();
+                                    String tag = et_tag.getText().toString();
+                                    String content = et_content.getText().toString();
+                                    String date = et_date.getText().toString();
 
-                                    Notify arrange_notify = new Notify(posts.Posts.get(position).getUser().getUsername(),tag,title
-                                            ,content,date);
+                                    if (title.matches("") || tag.matches("") || date.matches("") || content.matches("")){
+                                        Toast.makeText(NotifyListActivity.this, "Fields cannot be blank!", Toast.LENGTH_LONG).show();
+                                        lv_notify.setAlpha(0);
+                                        lv_notify.setEnabled(false);
+                                        findViewById(R.id.action_refresh).performClick();
+                                    } else {
 
-                                    Global.getService().UpdateNotify(posts.Posts.get(position).getId(),arrange_notify, new Callback<ArrangementResponse>() {
-                                        @Override
-                                        public void success(ArrangementResponse arrangementResponse, Response response) {
-                                            Toast.makeText(NotifyListActivity.this, "Updated", Toast.LENGTH_SHORT).show();
+                                        Notify arrange_notify = new Notify(posts.Posts.get(position).getUser().getUsername(), tag, title, content, date);
+
+                                        Global.getService().UpdateNotify(posts.Posts.get(position).getId(), arrange_notify, new Callback<ArrangementResponse>() {
+                                            @Override
+                                            public void success(ArrangementResponse arrangementResponse, Response response) {
+                                                Toast.makeText(NotifyListActivity.this, "Updated", Toast.LENGTH_SHORT).show();
+                                            }
+
+                                            @Override
+                                            public void failure(RetrofitError error) {
+                                                Toast.makeText(NotifyListActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+
+
+                                        dialog.dismiss();
+
+                                        lv_notify.setAlpha(0);
+                                        lv_notify.setEnabled(false);
+                                        findViewById(R.id.action_refresh).performClick();
                                         }
-
-                                        @Override
-                                        public void failure(RetrofitError error) {
-                                            Toast.makeText(NotifyListActivity.this, "Error!", Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
-
-
-
-                                    dialog.dismiss();
-
-                                    lv_notify.setAlpha(0);
-                                    lv_notify.setEnabled(false);
-                                    findViewById(R.id.action_refresh).performClick();
+                                    }
                                 }
-                            });
 
-                            changenotify.setNeutralButton("Delete", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
+                                );
+
+                                changenotify.setNeutralButton("Delete",new DialogInterface.OnClickListener()
+
+                                {
+                                    @Override
+                                    public void onClick (DialogInterface dialog,int which){
                                     Global.getService().DeleteNotify(posts.Posts.get(position).getId(), new Callback<ArrangementResponse>() {
                                         @Override
                                         public void success(ArrangementResponse arrangementResponse, Response response) {
@@ -174,34 +194,46 @@ public class NotifyListActivity extends ActionBarActivity {
                                     lv_notify.setEnabled(false);
                                     findViewById(R.id.action_refresh).performClick();
                                 }
-                            });
+                                }
 
-                            changenotify.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
+                                );
+
+                                changenotify.setNegativeButton("Cancel",new DialogInterface.OnClickListener()
+
+                                {
+                                    @Override
+                                    public void onClick (DialogInterface dialog,int which){
                                     dialog.dismiss();
                                     lv_notify.setAlpha(0);
                                     lv_notify.setEnabled(false);
                                     findViewById(R.id.action_refresh).performClick();
                                 }
-                            });
+                                }
 
-                            changenotify.show();
+                                );
+
+                                changenotify.show();
+                            }
                         }
-                    });
-                    Toast.makeText(NotifyListActivity.this, "Refreshed", Toast.LENGTH_SHORT).show();
+
+                        );
+                        Toast.makeText(NotifyListActivity.this,"Refreshed",Toast.LENGTH_SHORT).
+
+                        show();
+                    }
+
+
+                    @Override
+                    public void failure (RetrofitError error){
+                        Toast.makeText(NotifyListActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
                 }
 
+                );
 
-                @Override
-                public void failure(RetrofitError error) {
-                    Toast.makeText(NotifyListActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
-                }
-            });
-
-            return true;
-        }
-        if (id == R.id.action_add) {
+                return true;
+            }
+            if (id == R.id.action_add) {
             //Toast.makeText(getApplicationContext(),"Add.",Toast.LENGTH_LONG).show();
             Intent i = new Intent(NotifyListActivity.this, AddNotifyActivity.class);
             startActivity(i);

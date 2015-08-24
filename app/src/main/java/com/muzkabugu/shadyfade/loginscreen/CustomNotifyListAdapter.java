@@ -13,7 +13,7 @@ import java.util.List;
  * Created by shadyfade on 8/17/15.
  */
 public class CustomNotifyListAdapter extends ArrayAdapter {
-    private List<ListPosts> PostsList;
+    protected List<ListPosts> PostsList;
 
     public CustomNotifyListAdapter(Context context, List<ListPosts> posts){
         super(context,R.layout.notifylist_row, (List) posts);
@@ -40,12 +40,12 @@ public class CustomNotifyListAdapter extends ArrayAdapter {
         return item;
     }
 
-    /*@Override
-    public void onClick(View v) {
-        PostsList entry = (PostsList) v.getTag();
-        listPhonebook.remove(entry);
-        // listPhonebook.remove(view.getId());
-        notifyDataSetChanged();
+    @Override
+    public void notifyDataSetChanged() {
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        View item = inflater.inflate(R.layout.notifylist_row, null);
+        TextView notifydate = (TextView) item.findViewById(R.id.tv_notifydate);
 
-    }*/
+        super.notifyDataSetChanged();
+    }
 }
