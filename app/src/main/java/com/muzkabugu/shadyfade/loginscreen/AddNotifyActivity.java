@@ -94,7 +94,7 @@ public class AddNotifyActivity extends Activity {
                     public void onDateSet(DatePicker view, int year, int monthOfYear,
                                           int dayOfMonth) {
 
-                        tv_date.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                        tv_date.setText(dayOfMonth + "." + (monthOfYear + 1) + "." + year);
 
                     }
                 }, year, month, day);
@@ -165,6 +165,7 @@ public class AddNotifyActivity extends Activity {
                 @Override
                 public void success(Notify notify, Response response) {
                     progressDialog.dismiss();
+                    AddNotifyActivity.this.finish();
                     Toast.makeText(AddNotifyActivity.this, "Success!", Toast.LENGTH_LONG).show();
                     Intent i = new Intent(AddNotifyActivity.this, NotifyListActivity.class);
                     startActivity(i);

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#62A744">
+    android:background="@color/background_material_dark">
 
 
     <EditText
@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/et_title"
         android:hint="Title"
-        android:background="@drawable/koseust"
+        android:background="@drawable/kose90"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
@@ -20,10 +20,10 @@
         android:id="@+id/et_announcement"
         android:hint="Announcement"
         android:inputType="textMultiLine"
-        android:background="@drawable/kosealt"
         android:scrollbars="vertical"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/sp_tags" />
+        android:layout_below="@+id/sp_tags"
+        android:background="@drawable/kose90" />
 
     <Button
         android:layout_width="wrap_content"

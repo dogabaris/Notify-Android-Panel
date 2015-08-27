@@ -16,10 +16,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -55,7 +51,9 @@ public class NotifyListActivity extends ActionBarActivity {
 
         alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-                NotifyListActivity.this.finish();
+                //moveTaskToBack(true);
+                //finish();
+                android.os.Process.killProcess(android.os.Process.myPid());
             }
         });
 
@@ -84,16 +82,6 @@ public class NotifyListActivity extends ActionBarActivity {
                 public void success(final Posts posts, Response response) {
 
                     final CustomNotifyListAdapter adapter = new CustomNotifyListAdapter(NotifyListActivity.this, posts.Posts);
-
-                    /*Comparator<ListPosts> comperator = new Comparator<ListPosts>() {
-                        @Override
-                        public int compare(ListPosts object1, ListPosts object2) {
-                            return object1.getPublished_at().compareToIgnoreCase(
-                                    object2.getPublished_at());
-                        }
-
-                    //Collections.sort(List posts, comperator);
-                    };*/
 
                     lv_notify.setAdapter(adapter);
                     lv_notify.setEnabled(true);

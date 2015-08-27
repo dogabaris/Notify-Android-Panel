@@ -97,7 +97,6 @@ public class MainActivity extends Activity {
                         editor.putString("username", user.getUsername());
                         editor.putString("password", user.getPassword());
                         editor.apply();
-                        //editor.commit();
 
                         ActiveUser.roles = userResponse.getProfile().getRoles();
 
