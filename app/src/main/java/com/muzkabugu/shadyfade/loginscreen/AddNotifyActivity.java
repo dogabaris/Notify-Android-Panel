@@ -100,8 +100,6 @@ public class AddNotifyActivity extends Activity {
                 }, year, month, day);
 
                 datePicker.setTitle("Set Date");
-                //datePicker.setButton(DatePickerDialog.BUTTON_POSITIVE, "Set", datePicker);
-                //datePicker.setButton(DatePickerDialog.BUTTON_NEGATIVE, "Cancel", datePicker);
 
                 datePicker.show();
 
@@ -125,8 +123,6 @@ public class AddNotifyActivity extends Activity {
                 }, hour, minute, true);
 
                 timePicker.setTitle("Set Time");
-                //timePicker.setButton(DatePickerDialog.BUTTON_POSITIVE, "Set", timePicker);
-                //timePicker.setButton(DatePickerDialog.BUTTON_NEGATIVE, "Cancel", timePicker);
 
                 timePicker.show();
             }

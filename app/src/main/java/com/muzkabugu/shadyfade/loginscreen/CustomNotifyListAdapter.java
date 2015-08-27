@@ -12,6 +12,7 @@ import java.util.List;
 /**
  * Created by shadyfade on 8/17/15.
  */
+
 public class CustomNotifyListAdapter extends ArrayAdapter {
     protected List<ListPosts> PostsList;
 

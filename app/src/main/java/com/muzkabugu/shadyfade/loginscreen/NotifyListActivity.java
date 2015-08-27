@@ -16,7 +16,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -27,6 +26,17 @@ import retrofit.client.Response;
 
 public class NotifyListActivity extends ActionBarActivity {
     public ListView lv_notify;
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedState) {
+        super.onRestoreInstanceState(savedState);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,11 +124,6 @@ public class NotifyListActivity extends ActionBarActivity {
 
                             changenotify.setPositiveButton("Update", new DialogInterface.OnClickListener() {
 
-
-                                //Notify arrange_notify = new Notify(posts.Posts.get(position).getUser().getUsername(),et_tag.getText().toString(),et_title.getText().toString()
-                                //                                   ,et_content.getText().toString(),et_date.getText().toString());
-
-
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     String title = et_title.getText().toString();
@@ -146,7 +151,6 @@ public class NotifyListActivity extends ActionBarActivity {
                                                 Toast.makeText(NotifyListActivity.this, "Error!", Toast.LENGTH_SHORT).show();
                                             }
                                         });
-
 
                                         dialog.dismiss();
 
