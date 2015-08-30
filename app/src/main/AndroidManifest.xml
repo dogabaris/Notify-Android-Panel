@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.muzkabugu.shadyfade.loginscreen" >
+    package="com.muzkabugu.shadyfade.NotifyPanel" >
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
 
@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:configChanges="keyboardHidden|orientation"
-            android:name=".MainActivity"
+            android:name="com.muzkabugu.shadyfade.NotifyPanel.MainActivity"
             android:label="@string/app_name"
             android:windowSoftInputMode="stateHidden"
             android:screenOrientation="portrait">
@@ -23,7 +23,7 @@
         </activity>
 
         <activity
-            android:name=".NotifyListActivity"
+            android:name="com.muzkabugu.shadyfade.NotifyPanel.NotifyListActivity"
             android:label=""
             android:windowSoftInputMode="adjustResize"
             android:screenOrientation="portrait">
@@ -33,7 +33,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AddNotifyActivity"
+            android:name="com.muzkabugu.shadyfade.NotifyPanel.AddNotifyActivity"
             android:label=""
             android:windowSoftInputMode="adjustResize"
             android:screenOrientation="portrait">

@@ -94,7 +94,7 @@ public class AddNotifyActivity extends Activity {
                     public void onDateSet(DatePicker view, int year, int monthOfYear,
                                           int dayOfMonth) {
 
-                        tv_date.setText(dayOfMonth + "." + (monthOfYear + 1) + "." + year);
+                        tv_date.setText(String.format("%02d-%02d-%02d", year, (monthOfYear + 1),dayOfMonth));
 
                     }
                 }, year, month, day);

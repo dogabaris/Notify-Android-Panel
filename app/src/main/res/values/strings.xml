@@ -1,16 +1,7 @@
 <resources>
-    <string name="app_name">Loginscreen</string>
+    <string name="app_name">NotifyPanel</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
     <string name="Blogin">LOGIN</string>
-    <string name="TvUsername">Username:</string>
-    <string name="TvPassword">Password:</string>
-    <string name="Passwrod">TvPassword</string>
     <string name="Password">Password</string>
-    <string name="date_label_set">Press the button to set the date</string>
-    <string name="date_button_set">Set Date</string>
-    <string name="date_view_set">The Date is: </string>
-    <string name="date_selected"></string>
     <string name="Publish">Publish</string>
 </resources>
